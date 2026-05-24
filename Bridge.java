@@ -6,9 +6,9 @@ public class Bridge extends Device {
 
     @Override
     public void receive(Frame frame, Device from) {
-        System.out.println(name + " forwarding frame");
+        System.out.println(name + " forwarding frame"); //To determine what happens when data hits the bridge.
 
-        for (Device d : connections) {
+        for (Device d : conn) {
             if (d != from) {
                 d.receive(frame, this);
             }

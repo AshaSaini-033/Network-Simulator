@@ -2,32 +2,33 @@ import java.util.*;
 
 public class Switch extends Device {
 
-    Map<String, Device> macTable = new HashMap<>();
+    Map<String, Device> macTable = new HashMap<>();// create a lookup tasbel  is noit use it the it willl act like hubb
 
     public Switch(String name) {
         super(name);
     }
-
+   
     @Override
-    public void receive(Frame frame, Device from) {
+public void receive(Frame frame, Device from) {
+    // 1. Learn source (Always lowercase to avoid mismatches)
+    macTable.put(frame.source.toLowerCase(), from);
 
-        // Learn source
-        macTable.put(frame.source, from);
+    System.out.println(name + " learned: " + frame.source);
 
-        System.out.println(name + " learned: " + frame.source);
-
-        // Forward if known
-        if (macTable.containsKey(frame.destination)) {
-            Device target = macTable.get(frame.destination);
-            System.out.println(name + " forwarding to " + frame.destination);
-            target.receive(frame, this);
-        } else {
-            System.out.println(name + " broadcasting (unknown destination)");
-            for (Device d : connections) {
-                if (d != from) {
-                    d.receive(frame, this);
-                }
+    // 2. Search for destination (Always lowercase the search key)
+    String dest = frame.destination.toLowerCase(); 
+    
+    if (macTable.containsKey(dest)) {
+        Device target = macTable.get(dest);
+        System.out.println(name + " forwarding to " + frame.destination);
+        target.receive(frame, this);
+    } else {
+        System.out.println(name + " broadcasting (unknown destination)");
+        for (Device d : conn) {
+            if (d != from) {
+                d.receive(frame, this);
             }
         }
     }
+}
 }
