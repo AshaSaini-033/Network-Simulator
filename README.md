@@ -45,3 +45,65 @@ note
 
 code is kept simple on purpose so it is easy to read and understand.
 not optimised or anything like that.
+
+
+## Submission 2 - Network Layer
+
+Implemented:
+- Router creation
+- IPv4 addressing
+- ARP table
+- Static routing
+- RIP protocol simulation
+- Packet forwarding
+- Longest mask matching
+
+the simulator was extended to implement major Network Layer functionalities.  
+The main objective of this submission was to simulate how routers forward packets between different networks using IP addressing and routing techniques.
+
+### Functionalities Implemented
+
+#### 1. Router Creation and Configuration
+A Router class was implemented to simulate the behaviour of a real network router.  
+The router maintains:
+- Routing table
+- ARP table
+- Packet forwarding logic
+
+Routers can be connected with switches and end devices to create different network topologies.
+
+Example:
+```java
+Router r1 = new Router("Router1");
+
+---
+
+## Submission 3 - Transport + Application Layer
+
+Implemented:
+- Port assignment
+- Process to process communication
+- Segment creation
+- Sliding window flow control
+- Chat application
+- File transfer service
+## Submission 3 - Transport + Application Layer
+
+Submission 3 focused on implementing Transport Layer and Application Layer functionalities in the network simulator.  
+The objective of this phase was to simulate process-to-process communication, flow control mechanisms and application services running over the network.
+
+The simulator demonstrates how user applications communicate using transport layer protocols and how data moves through the protocol stack.
+
+### Functionalities Implemented
+
+#### Port Assignment
+Port numbers were assigned to different applications/processes running on end devices.
+
+This simulates how transport layer protocols identify different services running on a system.
+
+Example:
+```java
+pc1.assignPort(
+        5000,
+        "chat"
+);
